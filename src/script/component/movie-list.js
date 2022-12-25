@@ -20,7 +20,7 @@ class MovieList extends HTMLElement {
 
             const detailElement = document.createElement("movie-detail");
             detailElement.movie = movie;
-            this.append(detailElement);
+            this.shadowDOM.append(detailElement);
         });
     }
 
@@ -29,12 +29,7 @@ class MovieList extends HTMLElement {
         <style>
         .placeholder {
           font-weight: lighter;
-          color: rgba(0, 0, 0, 0.5);
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-         }
+          color: white;
         </style>
         `;
         this.shadowDOM.innerHTML += `<h2 class="placeholder">${message}</h2>`;

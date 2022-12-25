@@ -1,4 +1,7 @@
-import "./api-config"
+import {
+    baseUrl,
+    API_KEY
+} from "./api-config"
 
 class DataSource {
   static searchMovie(keyword) {
@@ -18,7 +21,7 @@ class DataSource {
 
 class Main {
   static fetchMovie() {
-      return fetch(`${baseUrl}/movie/now_playing${API_KEY}&language=en-US&page=1`)
+      return fetch(`${baseUrl}/movie/popular${API_KEY}`)
           .then(response => {
               return response.json()
           })

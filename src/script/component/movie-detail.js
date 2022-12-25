@@ -13,7 +13,7 @@ class MovieDetail extends HTMLElement {
         this.shadowDOM.innerHTML = `
             <style>
                 .modal-container {
-                    position: absolute;
+                    position: fixed;
                     width: 100%;
                     height: auto;
                     bottom: 0;
@@ -22,15 +22,13 @@ class MovieDetail extends HTMLElement {
                     right: 0;
                     padding: 0;
                     margin: 0;
-                    background-color: rgba(203, 209, 243, 0.7);
-                    backdrop-filter: blur(10px);
-                    -webkit-backdrop-filter: blur(10px);
+                    background-color: rgba(0, 0, 0, 0.5);
                 }
                 
                 .modal-dialog {
                     position: relative;
                     width: 600px;
-                    top: 60px;
+                    top: 20px;
                     margin: 0px auto;
                 }
                 
@@ -84,7 +82,8 @@ class MovieDetail extends HTMLElement {
                 }
                 
                 .modal-body p {
-                    font-size: 18px;
+                    font-size: 14px;
+                    margin: 0;
                 }
                 
                 .article-movie img {
@@ -114,14 +113,14 @@ class MovieDetail extends HTMLElement {
                 }
             </style>
 
-            <div class="modal-container" id="showDetail${this._movie.id}" tabindex="-1" role="dialog" aria-labelledby="movieTitle" aria-hidden="true" hidden>
-                <div class="modal-dialog" role="document">
+            <div class="modal-container" id="modalContainer" hidden>
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             ${this._movie.title}
                         </div>
                         <div class="modal-body">   
-                            <button type="button" data-dismiss="modal" class="close-button" id="close-button">X</button>
+                            <button type="button" id="closeButton" class="close-button">X</button>
                             <div class="article-movie">
                                 <div class="article-image">
                                     <img src="https://image.tmdb.org/t/p/w185${this._movie.poster_path}" alt="">

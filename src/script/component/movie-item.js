@@ -34,7 +34,7 @@ class MovieItem extends HTMLElement {
         
         .movie-image {
             width: 100%;
-            height: 380px;
+            min-height: 400px;
             padding: 10px;
             overflow: hidden;
             position: relative;
@@ -43,7 +43,6 @@ class MovieItem extends HTMLElement {
         
         .movie-image img {
             width: 100%;
-            height: 100%;
             border-radius: 10px;
             object-fit: cover;
         }
@@ -54,15 +53,18 @@ class MovieItem extends HTMLElement {
         
         .movie-header {
             color: white;
-            font-size: 24px;
-            padding-left: 10px;
+            padding: 0px 20px 0px 20px;
         }
         
         .movie-footer {
             margin: 10px;
+            padding: 10px;
+            border-top: 1px solid white;
         }
         
         .movie-footer button {
+            position: relative;
+            bottom: 0;
             width: 100%;
             font-size: 24px;
             padding: 14px;
@@ -85,14 +87,13 @@ class MovieItem extends HTMLElement {
         <div class="movie-item">
             <div class="movie-image">
                 <img src="https://image.tmdb.org/t/p/w185${this._movie.poster_path}" alt="${this._movie.title} Poster">
-                <img src="https://source.unsplash.com/random">
             </div>
             <div class="movie-header">
                 <h3 class="card-titte">${this._movie.title}</h3>
                 <p class="card-subtitle">${this._movie.release_date.substring(0, 4)}</p>
             </div>
             <div class="movie-footer">
-                <button class="button-detail" id="buttonDetail" type="button" data-toggle="modal" data-target="#showDetail${this._movie.id}">Detail</button>
+                <button class="button-detail" id="buttonDetail" type="button">Detail</button>
                 </div>
             </div>
         </div>
