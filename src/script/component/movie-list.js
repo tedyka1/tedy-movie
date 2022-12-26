@@ -17,10 +17,6 @@ class MovieList extends HTMLElement {
             const movieItemElement = document.createElement('movie-item');
             movieItemElement.movie = movie;
             this.shadowDOM.appendChild(movieItemElement);
-
-            const detailElement = document.createElement("movie-detail");
-            detailElement.movie = movie;
-            this.shadowDOM.append(detailElement);
         });
     }
 

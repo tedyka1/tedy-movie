@@ -54,6 +54,6 @@ const init = () => {
 
 export {
   init,
-  search,
+  search
 }
 

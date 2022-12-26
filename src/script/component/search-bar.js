@@ -20,7 +20,7 @@ class SearchBar extends HTMLElement {
     render() {
         this.shadowDOM.innerHTML = `
             <style>
-              .search-container {
+            .search-container {
                 display: flex;
                 margin-bottom: 20px;
                 background-color: #0A071B;
@@ -54,6 +54,12 @@ class SearchBar extends HTMLElement {
             }
             .search-container .search-button:active {
                 transform: scale(0.98);
+            }
+            @media (max-width: 640px) {
+                :host {
+                    width: 400px;
+                    
+                }
             }
             </style>
 

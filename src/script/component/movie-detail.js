@@ -9,6 +9,10 @@ class MovieDetail extends HTMLElement {
         this.render();
     }
 
+    show() {
+        this.shadowDOM.querySelector('#modalContainer').removeAttribute('hidden');
+    }
+
     render() {
         this.shadowDOM.innerHTML = `
             <style>
@@ -22,17 +26,15 @@ class MovieDetail extends HTMLElement {
                     right: 0;
                     padding: 0;
                     margin: 0;
-                    background-color: rgba(0, 0, 0, 0.5);
+                    background-color: rgba(0, 0, 0, 0.9);
+
                 }
                 
-                .modal-dialog {
+                .modal-content {
                     position: relative;
                     width: 600px;
                     top: 20px;
                     margin: 0px auto;
-                }
-                
-                .modal-content {
                     padding: 10px;
                     border-radius: 10px;
                     background-color: #0A071B;
@@ -111,47 +113,77 @@ class MovieDetail extends HTMLElement {
                 .article-title p:nth-child(4) {
                     margin-top: 14px;
                 }
+
+                @media (max-width: 640px) {
+                    .modal-content {
+                        top: 40px;
+                        width: 300px;
+                        height: 500px;
+                        font-size: 12px;
+                    }
+
+                    .modal-header {
+                        font-size: 18px;
+                    }
+
+                    .modal-body p {
+                        font-size: 10px;
+                    }
+
+                    .article-movie img {
+                        width: 150px;
+                        height: 200px;
+                        padding: 10px 10px 10px 0px;
+                    }
+
+                    .article-title p {
+                        font-size: 12px;
+                    }
+                }
             </style>
 
             <div class="modal-container" id="modalContainer" hidden>
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            ${this._movie.title}
-                        </div>
-                        <div class="modal-body">   
-                            <button type="button" id="closeButton" class="close-button">X</button>
-                            <div class="article-movie">
-                                <div class="article-image">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        ${this._movie.title}
+                    </div>
+                    <div class="modal-body">   
+                        <button type="button" id="closeButton" class="close-button">X</button>
+                        <div class="article-movie">
+                            <div class="article-image">
                                     <img src="https://image.tmdb.org/t/p/w185${this._movie.poster_path}" alt="">
-                                </div>
-                                <div class="article-title">
-                                    <p>
-                                        <b>Rate</b><br>
-                                        ${this._movie.vote_average};
-                                    </p>
-                                    <p>
-                                        <b>Release Date</b><br>
-                                        ${this._movie.release_date};
-                                    </p>
-                                    <p>
-                                        <b>Popularity</b><br>
-                                        ${this._movie.popularity}</p>
-                                    </p>
-                                    <p>
-                                        <b>Language</b><br>
-                                        ${this._movie.original_language}
-                                    </p>
-                                </div>
                             </div>
-                            <p><b>Description :</b> <br>
-                                ${this._movie.overview} lorem200
-                            </p>
+                             <div class="article-title">
+                                <p>
+                                    <b>Rate</b><br>
+                                    ${this._movie.vote_average}
+                                </p>
+                                <p>
+                                    <b>Release Date</b><br>
+                                    ${this._movie.release_date}
+                                </p>
+                                <p>
+                                    <b>Popularity</b><br>
+                                    ${this._movie.popularity}</p>
+                                </p>
+                                <p>
+                                    <b>Language</b><br>
+                                    ${this._movie.original_language}
+                                </p>
+                            </div>
                         </div>
-                    </div>            
+                        <p><b>Description :</b> <br>
+                            ${this._movie.overview} lorem200
+                        </p>
+                    </div>
                 </div>
             </div>
         `;
+
+        const closeButton = this.shadowDOM.querySelector('#closeButton');
+        closeButton.addEventListener('click', () => {
+            this.shadowRoot.querySelector('#modalContainer').setAttribute('hidden', '')
+        });
     }
 }
 

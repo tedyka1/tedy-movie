@@ -34,7 +34,6 @@ class MovieItem extends HTMLElement {
         
         .movie-image {
             width: 100%;
-            min-height: 400px;
             padding: 10px;
             overflow: hidden;
             position: relative;
@@ -54,6 +53,10 @@ class MovieItem extends HTMLElement {
         .movie-header {
             color: white;
             padding: 0px 20px 0px 20px;
+        }
+
+        .movie-header p {
+            font-size: 19px;
         }
         
         .movie-footer {
@@ -82,6 +85,22 @@ class MovieItem extends HTMLElement {
         .movie-footer button:active {
             transform: scale(0.95);
         }
+
+        @media (max-width: 768px) {
+            :host {
+                font-size: 12px;
+                flex: 25%;
+                max-width: 30%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            :host {
+                font-size: 10px;
+                flex: 50%;
+                max-width: 100%;
+            }
+        }
         </style>
 
         <div class="movie-item">
@@ -89,7 +108,7 @@ class MovieItem extends HTMLElement {
                 <img src="https://image.tmdb.org/t/p/w185${this._movie.poster_path}" alt="${this._movie.title} Poster">
             </div>
             <div class="movie-header">
-                <h3 class="card-titte">${this._movie.title}</h3>
+                <h2 class="card-titte">${this._movie.title}</h2>
                 <p class="card-subtitle">${this._movie.release_date.substring(0, 4)}</p>
             </div>
             <div class="movie-footer">
@@ -98,6 +117,14 @@ class MovieItem extends HTMLElement {
             </div>
         </div>
         `;
+
+        const buttonDetail = this.shadowDOM.querySelector('#buttonDetail');
+        buttonDetail.addEventListener('click', () => {
+            const movieDetailElement = document.createElement('movie-detail');
+            movieDetailElement.movie = this._movie;
+            movieDetailElement.show();
+            document.body.appendChild(movieDetailElement);
+        });
     }
 }
 
