@@ -108,7 +108,7 @@ class MovieItem extends HTMLElement {
                 <img src="https://image.tmdb.org/t/p/w185${this._movie.poster_path}" alt="${this._movie.title} Poster">
             </div>
             <div class="movie-header">
-                <h2 class="card-titte">${this._movie.title}</h2>
+                <h2 class="card-title">${this._movie.title}</h2>
                 <p class="card-subtitle">${this._movie.release_date.substring(0, 4)}</p>
             </div>
             <div class="movie-footer">
